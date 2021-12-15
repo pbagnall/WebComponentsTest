@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type='text/javascript' src='./DropDown.js'></script>
+        <script>
+            const values = {
+                "One": 1,
+                "Two": 2,
+                "Three": 3,
+                "Four": 4
+            }
+
+            function getOptions() {
+                // TODO: a way of setting the options
+            }
+
+            function showSelection(value) {
+                console.log(value);
+            }
+        </script>
+        <style>
+            div.toolbar {
+                display: flex;
+            }
+
+            ul-dropdown {
+                margin-right: 8px;
+            }
+
+            ul-dropdown option {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='toolbar'>
+            <ul-dropdown id='firstDropDown'>
+                <option slot='option' value='12'>Twelve</option>
+                <option slot='option' value='13'>Thirteen</option>
+                <option slot='option' value='14'>Fourteen</option>
+                <option slot='option' value='15'>Fifteen</option>
+                <option slot='option' value='16'>Sixteen</option>
+                <option slot='option' value='17'>Seventeen</option>
+            </ul-dropdown>
+            <ul-dropdown id='secondDropDown' />
+        </div>
+    </body>
+    <script>
+        let first = document.getElementById('firstDropDown');
+        first.addEventListener('change', showSelection(event));
+
+        let second = document.getElementById('secondDropDown');
+        second.setDataSource(getOptions);
+    </script>
+</html>
+
