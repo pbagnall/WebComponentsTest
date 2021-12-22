@@ -37,7 +37,6 @@ dropDownTemplate.innerHTML = `
 class DropDown extends HTMLElement {
     constructor() {
         super();
-        console.log("constructed dropdown");
 
         this.options = [{ value: null, label: 'no selection'}];
 
@@ -64,8 +63,6 @@ class DropDown extends HTMLElement {
     }
 
     setOptions(event) {
-        console.log("settings options");
-        console.log(event);
         this.options=[];
         for (let option of this.optionSlot.assignedNodes()) {
             this.options.push({
@@ -99,6 +96,7 @@ class DropDown extends HTMLElement {
         for (let option of this.options) {
             let div = document.createElement("div");
             div.appendChild(document.createTextNode(option.label));
+            div.value = option.value;
             this.list.appendChild(div);
         }
 
@@ -126,7 +124,8 @@ class DropDown extends HTMLElement {
         let option = event.target;
         this.field.innerHTML = option.textContent;
         this.value = option.value;
-        this.closeDropDown();
+        this.dispatchEvent(new CustomEvent('change', { detail: option.value }));
+        this.closeDropDown(event);
         event.stopPropagation();
         event.preventDefault();
     }

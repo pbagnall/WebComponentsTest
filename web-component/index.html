@@ -14,26 +14,35 @@
                 // TODO: a way of setting the options
             }
 
-            function showSelection(value) {
-                console.log(value);
+            function showSelection(div, event) {
+                console.log(event.detail);
+                div.innerHTML = event.detail;
             }
         </script>
         <style>
-            div.toolbar {
-                display: flex;
+            div.layout {
+                display: grid;
+                grid-template-columns: 50% 50%; 
             }
 
             ul-dropdown {
                 margin-right: 8px;
             }
-
+            
             ul-dropdown option {
                 display: none;
+            }
+
+            div.layout div {
+                padding: 8px;
             }
         </style>
     </head>
     <body>
-        <div class='toolbar'>
+        <h1>Plain JS using a WebComponent</h1>
+        <div class='layout'>
+            <div id='firstSelection'>no selection</div>
+            <div id='secondSelection'>no selection</div>
             <ul-dropdown id='firstDropDown'>
                 <option slot='option' value='12'>Twelve</option>
                 <option slot='option' value='13'>Thirteen</option>
@@ -47,10 +56,13 @@
     </body>
     <script>
         let first = document.getElementById('firstDropDown');
-        first.addEventListener('change', showSelection(event));
+        let firstout = document.getElementById('firstSelection');
+        first.addEventListener('change', (e) => showSelection(firstout, e));
 
         let second = document.getElementById('secondDropDown');
         second.setDataSource(getOptions);
+        let secondout = document.getElementById('secondSelection');
+        second.addEventListener('change', (e) => showSelection(secondout, e));
     </script>
 </html>
 
