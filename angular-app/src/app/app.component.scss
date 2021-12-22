@@ -1,0 +1,16 @@
+div.layout {
+    display: grid;
+    grid-template-columns: 50% 50%; 
+
+    div {
+        padding: 8px;
+    }  
+}
+
+ul-dropdown {
+    margin-right: 8px;
+}
+            
+ul-dropdown option {
+    display: none;
+}
