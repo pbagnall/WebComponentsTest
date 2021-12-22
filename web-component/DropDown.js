@@ -34,7 +34,7 @@ dropDownTemplate.innerHTML = `
     <div class='list'></div>
 `;
 
-class DropDown extends HTMLElement {
+export default class DropDown extends HTMLElement {
     constructor() {
         super();
 
