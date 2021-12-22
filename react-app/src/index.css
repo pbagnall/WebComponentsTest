@@ -1,7 +1,16 @@
-div.toolbar {
-    display: flex;
+div.layout {
+    display: grid;
+    grid-template-columns: 50% 50%; 
 }
 
 ul-dropdown {
     margin-right: 8px;
+}
+
+ul-dropdown option {
+    display: none;
+}
+
+div.layout div {
+    padding: 8px;
 }
