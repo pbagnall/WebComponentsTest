@@ -1,20 +1,30 @@
 import {execSync} from 'child_process';
+import fsextra from 'fs-extra';
 
-let script = [
-    {
-        "dir": "react-app",
-        "command": "yarn build"
-    },
-    {
-        "dir": "angular-app",
-        "command": "ng build"
-    }        
-];
-
+// clean up
+fsextra.removeSync("public");
 let cwd = process.cwd();
-script.forEach((example) => {
-    process.chdir(example.dir);
-    let result = execSync(example.command);
-    console.log(result.toString());
-    process.chdir(cwd);
-}); 
+
+// copy web-component version into public
+process.chdir("web-component");
+fsextra.copySync("./", "../public/webcomponent");
+process.chdir(cwd);
+fsextra.copySync("index.html", "public/index.html");
+
+// build react version and deploy into public
+{
+   process.chdir("react-app");
+   let result = execSync("yarn build");
+   fsextra.moveSync("build", "../public/react");
+   console.log(result.toString());
+   process.chdir(cwd);
+}
+
+// build react version and deploy into public
+{
+   process.chdir("angular-app");
+   let result = execSync("ng build");
+   fsextra.moveSync("build", "../public/angular");
+   console.log(result.toString());
+   process.chdir(cwd);
+}
