@@ -25,7 +25,7 @@ fsextra.copySync("index.html", "public/index.html");
 {
    process.chdir("angular-app");
    execSync("npm ci");
-   let result = execSync("ng build");
+   let result = execSync("npm run build");
    fsextra.moveSync("build", "../public/angular");
    console.log(result.toString());
    process.chdir(cwd);
