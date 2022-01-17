@@ -14,6 +14,7 @@ fsextra.copySync("index.html", "public/index.html");
 // build react version and deploy into public
 {
    process.chdir("react-app");
+   execSync("yarn install");
    let result = execSync("yarn build");
    fsextra.moveSync("build", "../public/react");
    console.log(result.toString());
@@ -23,6 +24,7 @@ fsextra.copySync("index.html", "public/index.html");
 // build react version and deploy into public
 {
    process.chdir("angular-app");
+   execSync("npm ci");
    let result = execSync("ng build");
    fsextra.moveSync("build", "../public/angular");
    console.log(result.toString());
