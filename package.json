@@ -1,5 +1,5 @@
 {
-  "dev-dependencies": {
+  "devDependencies": {
     "fs-extra": "^10.0.0",
     "yarn": "^1.22.17"
   }
